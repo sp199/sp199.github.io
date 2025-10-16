@@ -1,0 +1,30 @@
+---
+layout: default
+title: Home
+---
+<section class="hero">
+  <img class="avatar" src="{{ "/img/me.jpeg" | relative_url }}" alt="{{ site.title }}" width="120" height="120">
+  <div>
+    <h1>{{ site.title }}</h1>
+    <p>{{ site.description }}</p>
+    <p>
+      <a href="mailto:you@example.com">Email</a> ·
+      <a href="https://github.com/sp199">GitHub</a> ·
+      <a href="https://x.com/satyaa_mishra">X</a> ·
+      <a href="https://www.linkedin.com/in/satyaprakash-mishra">LinkedIn</a>
+    </p>
+  </div>
+</section>
+
+<section>
+  <h2>Recent posts</h2>
+  <ul class="post-list">
+    {% for post in site.posts limit:5 %}
+      <li class="post-item">
+        <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+        <small>{{ post.date | date: "%B %d, %Y" }}</small>
+      </li>
+    {% endfor %}
+  </ul>
+  <p><a href="{{ "/blogs.html" | relative_url }}">See all posts →</a></p>
+</section>

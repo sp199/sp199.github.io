@@ -1,0 +1,23 @@
+---
+layout: default
+title: Blogs
+---
+<h1>Blogs</h1>
+<p>Notes, tutorials, and write-ups.</p>
+
+<ul class="post-list">
+  {% for post in site.posts %}
+    <li class="post-item">
+      <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+      {% if post.excerpt %}
+        <p>{{ post.excerpt | strip_html | truncate: 220 }}</p>
+      {% endif %}
+      <small>
+        {{ post.date | date: "%B %d, %Y" }}
+        {% if post.categories and post.categories.size > 0 %}
+          • {{ post.categories | join: ", " }}
+        {% endif %}
+      </small>
+    </li>
+  {% endfor %}
+</ul>
