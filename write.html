@@ -1,0 +1,27 @@
+---
+layout: default
+title: Write
+---
+<h1>Write</h1>
+<p>Writing, essays, and articles.</p>
+
+<ul class="post-list">
+  {% assign write_posts = site.posts | where_exp: "post", "post.categories contains 'Write'" %}
+  {% for post in write_posts %}
+    <li class="post-item">
+      <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+      {% if post.excerpt %}
+        <p>{{ post.excerpt | strip_html | truncate: 220 }}</p>
+      {% endif %}
+      <small>
+        {{ post.date | date: "%B %d, %Y" }}
+        {% if post.categories and post.categories.size > 0 %}
+          • {{ post.categories | join: ", " }}
+        {% endif %}
+      </small>
+    </li>
+  {% else %}
+    <li class="post-item"><p>No posts yet in Write.</p></li>
+  {% endfor %}
+</ul>
+

@@ -1,0 +1,27 @@
+---
+layout: default
+title: Projects
+---
+<h1>Projects</h1>
+<p>A collection of my work and projects.</p>
+
+<ul class="post-list">
+  {% assign project_posts = site.posts | where_exp: "post", "post.categories contains 'Projects'" %}
+  {% for post in project_posts %}
+    <li class="post-item">
+      <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+      {% if post.excerpt %}
+        <p>{{ post.excerpt | strip_html | truncate: 220 }}</p>
+      {% endif %}
+      <small>
+        {{ post.date | date: "%B %d, %Y" }}
+        {% if post.categories and post.categories.size > 0 %}
+          • {{ post.categories | join: ", " }}
+        {% endif %}
+      </small>
+    </li>
+  {% else %}
+    <li class="post-item"><p>No projects posted yet.</p></li>
+  {% endfor %}
+</ul>
+

@@ -1,0 +1,27 @@
+---
+layout: default
+title: Build
+---
+<h1>Build</h1>
+<p>Projects, code, and technical builds.</p>
+
+<ul class="post-list">
+  {% assign build_posts = site.posts | where_exp: "post", "post.categories contains 'Build'" %}
+  {% for post in build_posts %}
+    <li class="post-item">
+      <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+      {% if post.excerpt %}
+        <p>{{ post.excerpt | strip_html | truncate: 220 }}</p>
+      {% endif %}
+      <small>
+        {{ post.date | date: "%B %d, %Y" }}
+        {% if post.categories and post.categories.size > 0 %}
+          • {{ post.categories | join: ", " }}
+        {% endif %}
+      </small>
+    </li>
+  {% else %}
+    <li class="post-item"><p>No posts yet in Build.</p></li>
+  {% endfor %}
+</ul>
+
